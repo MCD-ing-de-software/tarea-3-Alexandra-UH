@@ -107,6 +107,13 @@ class TestStatisticsUtils(unittest.TestCase):
         - Verificar que la media del resultado es aproximadamente 0 (usar self.assertAlmostEqual para un solo valor numérico - unittest es suficiente)
         - Verificar que la desviación estándar del resultado es aproximadamente 1 (usar self.assertAlmostEqual para un solo valor numérico - unittest es suficiente)
         """
+        utils = StatisticsUtils()
+        arr = [5,15,25,35]
+
+        result = utils.zscore(arr)
+
+        self.assesertAlmostEqual(result.mean(), 0.0, places =7)
+        self.assertAlmostEqual(result.std(), 1.0, places =7)
 
     def test_zscore_raises_for_zero_std(self):
         """Test que verifica que el método zscore lanza un ValueError cuando
