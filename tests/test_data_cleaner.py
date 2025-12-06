@@ -143,7 +143,7 @@ class TestDataCleaner(unittest.TestCase):
         cleaner = DataCleaner()
 
         with self.assertRaises(TypeError):
-            cleaner.trim_strings(df,)
+            cleaner.trim_strings(df,["age"])
 
     def test_remove_outliers_iqr_removes_extreme_values(self):
         """Test que verifica que el método remove_outliers_iqr elimina correctamente los
