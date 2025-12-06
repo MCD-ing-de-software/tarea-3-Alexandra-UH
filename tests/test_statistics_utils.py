@@ -112,7 +112,7 @@ class TestStatisticsUtils(unittest.TestCase):
 
         result = utils.zscore(arr)
 
-        self.assesertAlmostEqual(result.mean(), 0.0, places =7)
+        self.assertAlmostEqual(result.mean(), 0.0, places =7)
         self.assertAlmostEqual(result.std(), 1.0, places =7)
 
     def test_zscore_raises_for_zero_std(self):
@@ -147,8 +147,8 @@ class TestStatisticsUtils(unittest.TestCase):
         result = utils.min_max_scale(arr)
         expected = np.array([0.0,0.5,1.0])
 
-        self.assesertAlmostEqual(result.min(),0.0)
-        self.assesertAlmostEqual(result.max(),1.0)
+        self.assertAlmostEqual(result.min(),0.0)
+        self.assertAlmostEqual(result.max(),1.0)
 
         npt.assert_allclose(result,expected)
 
