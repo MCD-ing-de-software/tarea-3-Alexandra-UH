@@ -121,14 +121,18 @@ class TestDataCleaner(unittest.TestCase):
         df = make_sample_df()
         cleaner = DataCleaner()
 
+        df["name"]= df["name"].astype("string")
+
         raw_data = df.copy(deep=True)
         result = cleaner.trim_strings(df,["name"])
-        
-        self.assertEqual(df.loc[0, "name"], " Carol  ")
-        self.assertEqual(result.loc[0,"name"],"Carol")
+
+        self.assertEqual(result.loc[0, "name"], "Alice")
+        self.assertEqual(result.loc[1, "name"], "Bob")
+        self.assertTrue(pd.isna(result.loc[2, "name"]))
+        self.assertEqual(result.loc[3, "name"], "Carol")
 
         pdt.assert_series_equal(result["city"], raw_data["city"])
-
+        pdt.assert_series_equal(result["age"], raw_data["age"])
 
     def test_trim_strings_raises_typeerror_for_non_string_column(self):
         """Test que verifica que el método trim_strings lanza un TypeError cuando
